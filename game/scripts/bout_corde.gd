@@ -1,8 +1,10 @@
 extends RigidBody2D
-@export var id = 0	
+@export var id = 0
+@export var lenght = 0	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print_debug("rope ",id," ready!")
 	#if id %2 != 0:
 		#get_node("Sprite2D").texture = load("res://sprite/rope.png")
 	#else:
