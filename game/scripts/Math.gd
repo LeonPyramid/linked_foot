@@ -6,3 +6,13 @@ func rotateVect(v,angle):
 	
 func angleBtVect(u:Vector2,v:Vector2):
 	return acos((u.dot(v)/(u.length()*v.length())))
+
+# Gives the new coordinates of a point after rotation from point of angle
+func new_coord_after_rotation(coord:Vector2,point:Vector2,angle:float)->Vector2:
+	#angle = (angle * 2.0 * PI )/360.0
+	#print(angle)
+	var tmp_x:float = coord.x - point.x
+	var tmp_y:float = coord.y - point.y
+	var new_x = (tmp_x * cos(angle) - tmp_y*sin(angle))
+	var new_y = (tmp_x*sin(angle) + tmp_y*cos(angle))
+	return Vector2(new_x + point.x,new_y+ point.y)
