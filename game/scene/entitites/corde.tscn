@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://xbusu2pkc6lt"]
+
+[ext_resource type="PackedScene" uid="uid://da6wqxqujv48i" path="res://scene/entitites/bout_corde.tscn" id="1_h0tw0"]
+[ext_resource type="Script" path="res://scene/entitites/corde.gd" id="1_rrhu2"]
+
+[node name="Corde" type="Node2D"]
+script = ExtResource("1_rrhu2")
+
+[node name="bout_corde" parent="." instance=ExtResource("1_h0tw0")]
+position = Vector2(566, 298)
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="bout_corde"]
+position = Vector2(0, -8)
+node_a = NodePath("..")
+node_b = NodePath("../../../CharacterBody2D")
+bias = 0.9
+
+[node name="bout_corde2" parent="." instance=ExtResource("1_h0tw0")]
+position = Vector2(566, 315)
+id = 1
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="bout_corde2"]
+position = Vector2(0, -8)
+node_a = NodePath("..")
+node_b = NodePath("../../bout_corde")
+bias = 0.9
+
+[node name="bout_corde3" parent="." instance=ExtResource("1_h0tw0")]
+position = Vector2(566, 331)
+id = 2
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="bout_corde3"]
+position = Vector2(0, -7)
+node_a = NodePath("../../bout_corde2")
+node_b = NodePath("..")
+bias = 0.9
+
+[node name="bout_corde4" parent="." instance=ExtResource("1_h0tw0")]
+position = Vector2(566, 349)
+id = 3
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="bout_corde4"]
+position = Vector2(0, -9)
+node_a = NodePath("../../bout_corde3")
+node_b = NodePath("..")
+bias = 0.9
+
+[node name="bout_corde5" parent="." instance=ExtResource("1_h0tw0")]
+position = Vector2(566, 367)
+id = 4
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="bout_corde5"]
+position = Vector2(0, -10)
+node_a = NodePath("../../bout_corde4")
+node_b = NodePath("..")
+bias = 0.9
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="bout_corde5"]
+position = Vector2(0, 8)
+node_a = NodePath("..")
+node_b = NodePath("../../../AnchorPoint")
+bias = 0.9

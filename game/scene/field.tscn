@@ -1,69 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dunt32dwq8di5"]
 
+[ext_resource type="PackedScene" uid="uid://xbusu2pkc6lt" path="res://scene/entitites/corde.tscn" id="1_04uw6"]
 [ext_resource type="PackedScene" uid="uid://bt0p434ntwgot" path="res://scene/entitites/player.tscn" id="2_5pkxp"]
 [ext_resource type="Script" path="res://scripts/AnchorPoint.gd" id="2_bm1qp"]
-[ext_resource type="PackedScene" uid="uid://da6wqxqujv48i" path="res://scene/entitites/bout_corde.tscn" id="3_yscgn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wh5ur"]
 
 [node name="Field" type="Node"]
 
-[node name="Corde" type="Node" parent="."]
-
-[node name="bout_corde" parent="Corde" instance=ExtResource("3_yscgn")]
-position = Vector2(566, 298)
-
-[node name="PinJoint2D3" type="PinJoint2D" parent="Corde/bout_corde"]
-position = Vector2(0, -8)
-node_a = NodePath("..")
-node_b = NodePath("../../../CharacterBody2D")
-bias = 0.9
-
-[node name="bout_corde2" parent="Corde" instance=ExtResource("3_yscgn")]
-position = Vector2(566, 315)
-id = 1
-
-[node name="PinJoint2D2" type="PinJoint2D" parent="Corde/bout_corde2"]
-position = Vector2(0, -8)
-node_a = NodePath("..")
-node_b = NodePath("../../bout_corde")
-bias = 0.9
-
-[node name="bout_corde3" parent="Corde" instance=ExtResource("3_yscgn")]
-position = Vector2(566, 331)
-id = 2
-
-[node name="PinJoint2D2" type="PinJoint2D" parent="Corde/bout_corde3"]
-position = Vector2(0, -7)
-node_a = NodePath("../../bout_corde2")
-node_b = NodePath("..")
-bias = 0.9
-
-[node name="bout_corde4" parent="Corde" instance=ExtResource("3_yscgn")]
-position = Vector2(566, 349)
-id = 3
-
-[node name="PinJoint2D3" type="PinJoint2D" parent="Corde/bout_corde4"]
-position = Vector2(0, -9)
-node_a = NodePath("../../bout_corde3")
-node_b = NodePath("..")
-bias = 0.9
-
-[node name="bout_corde5" parent="Corde" instance=ExtResource("3_yscgn")]
-position = Vector2(566, 367)
-id = 4
-
-[node name="PinJoint2D4" type="PinJoint2D" parent="Corde/bout_corde5"]
-position = Vector2(0, -10)
-node_a = NodePath("../../bout_corde4")
-node_b = NodePath("..")
-bias = 0.9
-
-[node name="PinJoint2D5" type="PinJoint2D" parent="Corde/bout_corde5"]
-position = Vector2(0, 8)
-node_a = NodePath("..")
-node_b = NodePath("../../../AnchorPoint")
-bias = 0.9
+[node name="Corde" parent="." instance=ExtResource("1_04uw6")]
 
 [node name="AnchorPoint" type="StaticBody2D" parent="."]
 position = Vector2(568, 385)
