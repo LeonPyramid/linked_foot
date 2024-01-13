@@ -19,4 +19,5 @@ func remove_piece():
 func generate_rope(nb_pieces):
 	pass
 
-
+func _rotate_from_point(ojbect:RigidBody2D,point):
+	pass

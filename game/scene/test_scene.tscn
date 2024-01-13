@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://yv8ggygvo8ws"]
+
+[ext_resource type="Script" path="res://scripts/test_roation_from_point.gd" id="1_ew2y8"]
+[ext_resource type="Texture2D" uid="uid://fx8kaqhv3qt3" path="res://sprite/rope.png" id="2_yau47"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hk0km"]
+size = Vector2(4, 20)
+
+[node name="Test_scene" type="Node"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." node_paths=PackedStringArray("rotation_point")]
+position = Vector2(61, 37)
+mass = 0.01
+gravity_scale = 0.0
+script = ExtResource("1_ew2y8")
+rotation_speed = 10.0
+rotation_point = NodePath("../rotation_point")
+lenght = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_hk0km")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture_filter = 1
+texture = ExtResource("2_yau47")
+
+[node name="rotation_point" type="Node2D" parent="."]
+position = Vector2(61, 33)
