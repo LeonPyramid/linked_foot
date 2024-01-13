@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt0p434ntwgot"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_ecxup"]
+[ext_resource type="Texture2D" uid="uid://d2egkbnwfo6m2" path="res://icon.svg" id="2_cotod"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u8fl0"]
+radius = 61.0
+height = 174.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("player_anchor_point")]
+motion_mode = 1
+script = ExtResource("1_ecxup")
+player_anchor_point = NodePath("AnchorPoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_u8fl0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cotod")
+
+[node name="AnchorPoint" type="Node2D" parent="."]
+position = Vector2(0, 77)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnchorPoint"]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_cotod")
