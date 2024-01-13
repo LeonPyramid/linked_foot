@@ -27,5 +27,8 @@ func _process(delta):
 		print(angle)
 		rotation += angle
 		#print(angle)
-		position = new_coord_after_rotation(position,rotation_point.position,angle)
+		position = new_coord_after_rotation(position,rotation_point.global_position,angle)
 	pass
+	
+
+	
