@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://xbusu2pkc6lt"]
+[gd_scene load_steps=3 format=3 uid="uid://xbusu2pkc6lt"]
 
 [ext_resource type="PackedScene" uid="uid://da6wqxqujv48i" path="res://scene/entitites/bout_corde.tscn" id="1_h0tw0"]
+[ext_resource type="Script" path="res://scene/entitites/corde.gd" id="1_rrhu2"]
 
-[node name="Corde" type="Node"]
+[node name="Corde" type="Node2D"]
+script = ExtResource("1_rrhu2")
 
 [node name="bout_corde" parent="." instance=ExtResource("1_h0tw0")]
 position = Vector2(566, 298)
