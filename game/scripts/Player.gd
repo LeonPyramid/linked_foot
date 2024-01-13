@@ -45,10 +45,10 @@ func _physics_process(delta):#this version tract the ankor with the player
 	get_input()
 	dist = (player_anchor_point.global_position).distance_to(anchor_point.global_position)
 	if(dist >= lenght_rope):# Must ²block movement inisde rope range
-		print_debug("in it")
+		#print_debug("in it")
 		#vector line between anchor an player
 		direct_vect = (player_anchor_point.global_position - anchor_point.global_position).normalized()
-		print("rotate_before",direct_vect)
+		#print("rotate_before",direct_vect)
 		if(velocity.dot(direct_vect) > 0): # Velocity is going out of range of rope
 			#direct_vect = rotate_vect_90(direct_vect)
 			#print("rotate_after",direct_vect)
