@@ -8,8 +8,6 @@
 
 [node name="Field" type="Node"]
 
-[node name="Corde" parent="." instance=ExtResource("1_04uw6")]
-
 [node name="AnchorPoint" type="StaticBody2D" parent="."]
 position = Vector2(568, 385)
 collision_layer = 4
@@ -21,8 +19,13 @@ position = Vector2(-2, -2)
 shape = SubResource("RectangleShape2D_wh5ur")
 
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("anchor_point") instance=ExtResource("2_5pkxp")]
-position = Vector2(566, 210)
+position = Vector2(568, 232)
 lenght_rope = 90
 anchor_point = NodePath("../AnchorPoint")
 
+[node name="Corde" parent="." instance=ExtResource("1_04uw6")]
+position = Vector2(551, 320)
+
 [connection signal="tract_anchor" from="CharacterBody2D" to="AnchorPoint" method="_on_character_body_2d_tract_anchor"]
+
+[editable path="Corde"]
