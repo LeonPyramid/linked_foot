@@ -18,9 +18,7 @@ var nb_joints:int = 0
 @export var dist_overlap_joint = 2
 
 
-func _move_extremities():
-	pass
-	
+
 	
 #Add a joint between obj1 and obj2 at pos_in_obj1 in obj1, and set the joint as child of obj1
 func _add_joint(joint,obj1,obj2,pos_in_obj1):
@@ -34,6 +32,15 @@ func _add_joint(joint,obj1,obj2,pos_in_obj1):
 
 func _compute_piece_position(piece,id,direction):
 	return direction*(0.5*piece.length - dist_overlap_joint + id * (piece.length - dist_overlap_joint))
+
+
+func _move_extremities(length):
+	var directionE1 = (extremity2.global_position-extremity1.global_position).normalized()
+	var directionE2 = -directionE1 
+	extremity1.get_parent().global_position += directionE1*(length/2)
+	extremity2.global_position += directionE2*(length/2)
+	
+	
 
 func add_piece():
 	var piece = Piece.instantiate()
@@ -118,9 +125,12 @@ func _ready():
 	distance = extremity1.global_position.distance_to(extremity2.global_position)
 	print_debug(nb_pieces)
 	generate_rope(nb_pieces)
+	
 	pass # Replace with function body.
 
-
+func _physics_process(delta):
+	if(Input.is_anything_pressed()):
+		_move_extremities(20*delta)
 
 # Rotate the two pieces of rope so they can add one new piece between them
 # piece1 and piece2 are the rope piece to rotate
