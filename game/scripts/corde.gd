@@ -75,4 +75,14 @@ func _ready():
 
 
 
+# Rotate the two pieces of rope so they can add one new piece between them
+# piece1 and piece2 are the rope piece to rotate
+# joint_1 and joint_3 are the two rotation point of the ropes
+# dist_joint is the usual distance between two joints in the rope
+func leave_space_for_new_rope(piece_1:Node2D,
+	piece_2:Node2D,joint_1:Node2D,joint_3:Node2D,dist_joint:float):
+	var space = joint_1.position.distance_to(joint_3.position)
+	var angle = Math.compute_angle_of_trapeze(space,dist_joint)
+	Math.rotate_object_arround(piece_1,joint_1.position,angle)
+	Math.rotate_object_arround(piece_2,joint_3.position,-angle)
 

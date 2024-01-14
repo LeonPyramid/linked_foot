@@ -1,21 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://yv8ggygvo8ws"]
 
-[ext_resource type="Script" path="res://scripts/test_roation_from_point.gd" id="1_ew2y8"]
+[ext_resource type="Script" path="res://scripts/test_scene.gd" id="1_bn6x7"]
 [ext_resource type="Texture2D" uid="uid://fx8kaqhv3qt3" path="res://sprite/rope.png" id="2_yau47"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hk0km"]
 size = Vector2(4, 20)
 
-[node name="Test_scene" type="Node"]
+[node name="Test_scene" type="Node" node_paths=PackedStringArray("piece_one", "piece_two", "joint_one", "joint_two", "test_joint_two", "joint_three")]
+script = ExtResource("1_bn6x7")
+piece_one = NodePath("RigidBody2D")
+piece_two = NodePath("RigidBody2D2")
+joint_one = NodePath("rotation_point")
+joint_two = NodePath("rotation_point2")
+test_joint_two = NodePath("test_rotation_point_2")
+joint_three = NodePath("rotation_point3")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." node_paths=PackedStringArray("rotation_point")]
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(61, 37)
 mass = 0.01
 gravity_scale = 0.0
-script = ExtResource("1_ew2y8")
-rotation_speed = 10.0
-rotation_point = NodePath("../rotation_point")
-lenght = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_hk0km")
@@ -24,5 +27,26 @@ shape = SubResource("RectangleShape2D_hk0km")
 texture_filter = 1
 texture = ExtResource("2_yau47")
 
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(61, 55)
+mass = 0.01
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+shape = SubResource("RectangleShape2D_hk0km")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D2"]
+texture_filter = 1
+texture = ExtResource("2_yau47")
+
 [node name="rotation_point" type="Node2D" parent="."]
-position = Vector2(61, 33)
+position = Vector2(61, 28)
+
+[node name="rotation_point2" type="Node2D" parent="."]
+position = Vector2(61, 46)
+
+[node name="rotation_point3" type="Node2D" parent="."]
+position = Vector2(61, 64)
+
+[node name="test_rotation_point_2" type="Node2D" parent="."]
+position = Vector2(61, 46)
