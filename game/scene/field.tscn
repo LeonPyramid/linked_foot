@@ -25,6 +25,7 @@ anchor_point = NodePath("../AnchorPoint")
 
 [node name="Corde" parent="." instance=ExtResource("1_04uw6")]
 position = Vector2(551, 320)
+dist_overlap_joint = 5
 
 [connection signal="tract_anchor" from="CharacterBody2D" to="AnchorPoint" method="_on_character_body_2d_tract_anchor"]
 

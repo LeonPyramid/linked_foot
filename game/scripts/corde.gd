@@ -18,8 +18,18 @@ var nb_joints:int = 0
 @export var dist_overlap_joint = 2
 
 
-func _move_extremities():
-	pass
+func _move_extremities(length):
+	var directionE1 = (extremity2.global_position-extremity1.global_position).normalized()
+	var directionE2 = -directionE1 
+	extremity1.get_parent().global_position += directionE1*(length/2)
+	extremity2.global_position += directionE2*(length/2)
+	
+	
+	
+	
+	
+	
+	
 func add_piece():
 	print_debug("INNN")
 	var piece = Piece.instantiate()
@@ -40,12 +50,10 @@ func add_piece():
 	
 	
 	if (len(list_pieces)==1): 
-		print_debug(nb_pieces)
 		var vectorPiece = Vector2(0,piece.length)
 		var rotationPoint = extremity1.global_position
 		var piecePostion = Vector2(rotationPoint.x,rotationPoint.y+0.5*piece.length-dist_overlap_joint)
 		var angleRotation = Math.angleBtVect(vectorPiece,direction)
-		print(angleRotation)
 		var coordRotation = Math.new_coord_after_rotation(piecePostion,rotationPoint,angleRotation)
 	
 		piece.global_position= coordRotation
@@ -71,9 +79,12 @@ func _ready():
 	extremity1 = get_parent().get_node("CharacterBody2D").get_node("AnchorPoint")
 	print_debug(nb_pieces)
 	generate_rope(nb_pieces)
+	
 	pass # Replace with function body.
 
-
+func _physics_process(delta):
+	if(Input.is_anything_pressed()):
+		_move_extremities(20*delta)
 
 # Rotate the two pieces of rope so they can add one new piece between them
 # piece1 and piece2 are the rope piece to rotate
