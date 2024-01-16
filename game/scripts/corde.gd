@@ -85,18 +85,18 @@ func add_piece():
 			var piece_id_m_1 = list_pieces[piece.id-1]
 			var ancestor_joint_pos = list_joint[piece.id-1].global_position # we need this joint as
 			# a pivot point for the piece id-1
-			var dist_ancest_extrem = ancestor_joint_pos.distance_to(extremity2.position)
-			var angle_overlap = acos((dist_ancest_extrem**2)/(2.0*piece.length*dist_ancest_extrem))
+			var dist_ancest_extrem = ancestor_joint_pos.distance_to(extremity2.global_position)
+			var angle_overlap = acos((dist_ancest_extrem**2)/(2.0*(piece.length-dist_overlap_joint)*dist_ancest_extrem))
 			var new_pos_id_m_1 = Math.new_coord_after_rotation(
 				piece_id_m_1.global_position,ancestor_joint_pos,angle_overlap)
 			piece_id_m_1.global_position = new_pos_id_m_1
 			piece_id_m_1.rotation += angle_overlap
-			var new_piece_position = extremity2.global_position -direction*(0.5*piece.length - dist_overlap_joint)
+			var new_piece_position = extremity2.global_position -direction*0.5*(piece.length - dist_overlap_joint)
 			new_piece_position = Math.new_coord_after_rotation(
 				new_piece_position,extremity2.global_position,-angle_overlap)
-			
+			#print(angle_overlap)
 			piece.global_position = new_piece_position
-			piece.rotation -= angle_overlap + angleRotation
+			piece.rotation -= angleRotation + angle_overlap
 			#piece.rotation += 2*angle_overlap
 
 		else:
@@ -129,8 +129,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	if(Input.is_anything_pressed()):
-		_move_extremities(20*delta)
+	pass
 
 # Rotate the two pieces of rope so they can add one new piece between them
 # piece1 and piece2 are the rope piece to rotate

@@ -9,7 +9,7 @@
 [node name="Field" type="Node"]
 
 [node name="AnchorPoint" type="StaticBody2D" parent="."]
-position = Vector2(239, 305)
+position = Vector2(243, 302)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_bm1qp")
@@ -18,7 +18,7 @@ script = ExtResource("2_bm1qp")
 shape = SubResource("RectangleShape2D_wh5ur")
 
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("anchor_point") instance=ExtResource("2_5pkxp")]
-position = Vector2(243, 115)
+position = Vector2(243, 116)
 collision_mask = 0
 lenght_rope = 106
 anchor_point = NodePath("../AnchorPoint")
