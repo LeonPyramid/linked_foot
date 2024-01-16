@@ -23,8 +23,10 @@ collision_mask = 0
 lenght_rope = 106
 anchor_point = NodePath("../AnchorPoint")
 
-[node name="Corde" parent="." instance=ExtResource("1_04uw6")]
+[node name="Corde" parent="." node_paths=PackedStringArray("extremity1", "extremity2") instance=ExtResource("1_04uw6")]
 position = Vector2(226, 203)
+extremity1 = NodePath("../CharacterBody2D/AnchorPoint")
+extremity2 = NodePath("../AnchorPoint")
 nb_pieces = 8
 dist_overlap_joint = 5
 
