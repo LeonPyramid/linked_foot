@@ -5,7 +5,12 @@ func rotateVect(v,angle):
 	return newVect
 	
 func angleBtVect(u:Vector2,v:Vector2):
-	return acos((u.dot(v)/(u.length()*v.length())))
+	var cross = u.cross(v)
+	print(cross)
+	if cross >= 0:
+		return - acos((u.dot(v)/(u.length()*v.length())))
+	else:
+		return acos((u.dot(v)/(u.length()*v.length())))
 
 # Gives the new coordinates of a point after rotation from point of angle
 func new_coord_after_rotation(coord:Vector2,point:Vector2,angle:float)->Vector2:
