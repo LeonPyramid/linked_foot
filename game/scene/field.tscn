@@ -20,7 +20,6 @@ shape = SubResource("RectangleShape2D_wh5ur")
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("anchor_point") instance=ExtResource("2_5pkxp")]
 position = Vector2(243, 116)
 collision_mask = 0
-lenght_rope = 106
 anchor_point = NodePath("../AnchorPoint")
 
 [node name="Corde" parent="." node_paths=PackedStringArray("extremity1", "extremity2") instance=ExtResource("1_04uw6")]
@@ -31,5 +30,6 @@ nb_pieces = 8
 dist_overlap_joint = 5
 
 [connection signal="tract_anchor" from="CharacterBody2D" to="AnchorPoint" method="_on_character_body_2d_tract_anchor"]
+[connection signal="rope_change" from="Corde" to="CharacterBody2D" method="_on_corde_rope_change"]
 
 [editable path="Corde"]

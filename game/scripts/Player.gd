@@ -6,7 +6,7 @@ signal tract_anchor(new_velocity)
 
 var direct_vect = Vector2.ZERO
 var dist = -INF
-@export var lenght_rope = 0
+@export var lenght_rope = +INF
 @export var anchor_point: Node2D
 @export var player_anchor_point: Node2D
 
@@ -83,3 +83,7 @@ func old_physics_process(delta): # This version blocks the player in its movemen
 	
 	#print_debug(dist)
 	pass
+
+
+func _on_corde_rope_change(length):
+	lenght_rope = length

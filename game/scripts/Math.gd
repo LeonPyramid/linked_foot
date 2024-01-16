@@ -6,7 +6,6 @@ func rotateVect(v,angle):
 	
 func angleBtVect(u:Vector2,v:Vector2):
 	var cross = u.cross(v)
-	print(cross)
 	if cross >= 0:
 		return - acos((u.dot(v)/(u.length()*v.length())))
 	else:

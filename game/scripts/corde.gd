@@ -25,7 +25,8 @@ var nb_joints:int = 0
 ## Compute the distance between the joints in the rope
 var joint_distance:int
 
-
+## Signal when the rope change length
+signal rope_change(length:int)
 
 	
 ## Add a joint between obj1 and obj2 at pos_in_obj1 in obj1, and set the joint as child of obj1
@@ -135,6 +136,19 @@ func add_piece():
 func remove_piece():
 	pass
 
+## Destroy the previous builded rope
+func _delete_rope():
+	for piece in list_pieces:
+		piece.queue_free()
+	list_pieces = []
+	for joint in list_joint:
+		joint.queue_free()
+	list_joint = []
+	nb_pieces = 0
+	nb_joints = 0
+	
+
+
 func generate_rope(nb_pieces):
 	for i in range(nb_pieces):
 		add_piece()
@@ -155,12 +169,18 @@ func _ready():
 
 func _input(event):
 	if(Input.is_action_just_pressed("general_event")):
+		_delete_rope()
 		# Computing the length of the rope
 		distance = extremity1.global_position.distance_to(extremity2.global_position)
 		nb_pieces = ceil(distance/joint_distance)
-		print_debug("dist: ",distance,"\nspace between joint: ", joint_distance,"\n nb pieces: ",nb_pieces)
+		print_debug("dist: ",distance,"\n rope_length: ",nb_pieces* joint_distance)
 		generate_rope(nb_pieces)
-
+		rope_change.emit(nb_pieces * joint_distance)
+		
+	if(Input.is_action_just_pressed("remove")):
+		_delete_rope()
+		rope_change.emit(INF)
+		
 func _physics_process(delta):
 	pass
 
