@@ -22,6 +22,10 @@ var nb_joints:int = 0
 ## Number of pixel the pieces will overlap each other (to connect the joint)
 @export var dist_overlap_joint = 2
 
+## Var for the part to remove from the length of the rope so that it doesn't 
+## vibrate when tense
+@export var rope_length_epsilon:int
+
 ## Compute the distance between the joints in the rope
 var joint_distance:int
 
@@ -54,7 +58,8 @@ func _move_extremities(length):
 ## Compute the angle in the isosceles rectangle between base and
 ## edges, where base is distance_to_joint and edges are joint_distance_in_piece
 func _angle_overlap(joint_distance_in_piece,distance_to_joint):
-	return acos((distance_to_joint**2)/(2.0*(joint_distance_in_piece)*distance_to_joint))
+	var cosi = (distance_to_joint/2.0)/joint_distance_in_piece
+	return acos(cosi)
 
 
 func add_piece():
@@ -92,7 +97,7 @@ func add_piece():
 	else:
 		# General computation
 		var joint_pos_in_piece = Vector2(0,0.5*(piece.length-2*dist_overlap_joint)+ 0.5*dist_overlap_joint)
-		var rope_length = (piece.id+1)*(joint_distance)+0.5*dist_overlap_joint
+		var rope_length = (piece.id+1)*(joint_distance)
 
 	## We have an overlap of rope length, need to angle the last piece and joint with the extremity2
 		if(rope_length>distance):
@@ -125,7 +130,7 @@ func add_piece():
 		
 		_add_joint(joint,list_pieces[piece.id-1],piece,joint_pos_in_piece)
 		
-		if(rope_length>distance && list_joint[nb_joints - 1].node_b != extremity2.get_path()):
+		if(rope_length>=distance && list_joint[nb_joints - 1].node_b != extremity2.get_path()):
 			# Need to joint to the extremity
 			var joint_end = PinJoint2D.new()
 			nb_joints+=1
@@ -175,7 +180,7 @@ func _input(event):
 		nb_pieces = ceil(distance/joint_distance)
 		print_debug("dist: ",distance,"\n rope_length: ",nb_pieces* joint_distance)
 		generate_rope(nb_pieces)
-		rope_change.emit(nb_pieces * joint_distance)
+		rope_change.emit(nb_pieces * joint_distance - rope_length_epsilon)
 		
 	if(Input.is_action_just_pressed("remove")):
 		_delete_rope()

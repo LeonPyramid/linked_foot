@@ -8,10 +8,13 @@
 
 [node name="Field" type="Node"]
 
-[node name="AnchorPoint" type="StaticBody2D" parent="."]
-position = Vector2(243, 302)
+[node name="AnchorPoint" type="RigidBody2D" parent="."]
+position = Vector2(243, 283)
 collision_layer = 0
 collision_mask = 0
+mass = 0.1
+gravity_scale = 0.0
+linear_damp = 5.0
 script = ExtResource("2_bm1qp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnchorPoint"]
@@ -28,8 +31,10 @@ extremity1 = NodePath("../CharacterBody2D/AnchorPoint")
 extremity2 = NodePath("../AnchorPoint")
 nb_pieces = 8
 dist_overlap_joint = 5
+rope_length_epsilon = 7
 
 [connection signal="tract_anchor" from="CharacterBody2D" to="AnchorPoint" method="_on_character_body_2d_tract_anchor"]
 [connection signal="rope_change" from="Corde" to="CharacterBody2D" method="_on_corde_rope_change"]
 
+[editable path="CharacterBody2D"]
 [editable path="Corde"]

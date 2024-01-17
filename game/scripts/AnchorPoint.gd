@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends RigidBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,4 +14,4 @@ func _process(delta):
 
 func _on_character_body_2d_tract_anchor(new_velocity):
 	position = position + new_velocity
-	#pass # Replace with function body.
+	pass # Replace with function body.
